@@ -1,2 +1,27 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	const routes = Object.keys(
+		import.meta.glob('./*/+page.svelte', {
+			query: '?raw',
+			eager: true
+		})
+	).map((route) => {
+		const parts = route.split('/');
+		parts.pop();
+		return parts.join('/');
+	});
+</script>
+
+<ul>
+	{#each routes as route}
+		<li><a href={route}>{route}</a></li>
+	{/each}
+</ul>
+
+<style>
+	ul,
+	a {
+		font-family: monospace;
+		font-size: 2rem;
+		color: white;
+	}
+</style>
