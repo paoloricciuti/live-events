@@ -15,7 +15,8 @@ export function create_sse() {
 			}),
 			{
 				headers: {
-					'content-type': 'text/event-stream'
+					'content-type': 'text/event-stream',
+					'Access-Control-Allow-Origin': '*'
 				}
 			}
 		);
